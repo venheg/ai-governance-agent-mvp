@@ -1,76 +1,36 @@
-# AI Governance Agent — MVP Starter
+# AI Governance Agent — Phase 2
 
-This is the first, beginner-friendly application shell for the AI Governance Agent.
+## Setup
+1. Create a Gemini API key in Google AI Studio: https://aistudio.google.com/
+2. Install Python 3.11+ and run `pip install -r requirements.txt`.
+3. Create `.streamlit/secrets.toml` containing:
 
-## What is included
+   GEMINI_API_KEY = "YOUR_API_KEY"
+   GEMINI_MODEL = "gemini-2.5-flash-lite"
 
-- Dashboard
-- AI use-case registration
-- Assessment inventory
-- Basic submit-for-review workflow
-- Human review placeholder
+4. Run `streamlit run app.py`.
 
-The first version uses Streamlit session state. This means records are temporary and may reset when the app restarts.
+For Streamlit Community Cloud, add the same TOML entries under the app's
+Secrets settings. Never commit `secrets.toml` or put API keys in source code.
+Docs: https://docs.streamlit.io/develop/concepts/connections/secrets-management
 
-## Safety
+Check current model availability, quotas, pricing and data terms:
+https://ai.google.dev/gemini-api/docs/pricing
 
-Use fictional demonstration data only. Do not enter personal, confidential, regulated, or organisationally sensitive information.
+Use synthetic data only. The Gemini API free tier may use submitted content
+to improve Google's products. Do not submit personal, confidential, sensitive,
+regulated or restricted organisational information.
 
-This prototype does not provide legal advice, certify compliance, or approve AI systems for deployment.
+This prototype provides preliminary observations only. It does not provide
+legal advice, certify compliance or approve AI deployment.
 
-## Option 1 — Run locally on your computer
+## Test
+Open Governance Agent, select the sample Customer Support Assistant, and ask:
+"Help me assess this AI use case. Ask for missing information one question
+at a time." Answer using fictional details, then click "Prepare preliminary
+governance assessment".
 
-1. Install Python 3.11 or newer.
-2. Extract this ZIP file.
-3. Open a terminal in the extracted folder.
-4. Create a virtual environment:
-
-   Windows:
-   ```bash
-   py -m venv .venv
-   .venv\Scripts\activate
-   ```
-
-   macOS/Linux:
-   ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate
-   ```
-
-5. Install packages:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-6. Start the app:
-
-   ```bash
-   streamlit run app.py
-   ```
-
-7. Open the local URL shown in the terminal (usually http://localhost:8501).
-
-## Option 2 — Deploy with Streamlit Community Cloud
-
-1. Create a GitHub repository.
-2. Upload `app.py` and `requirements.txt` to the repository.
-3. Sign in to Streamlit Community Cloud using GitHub.
-4. Create an app and select your repository.
-5. Set the main file path to `app.py`.
-6. Deploy.
-
-See the official Streamlit Community Cloud documentation:
-https://docs.streamlit.io/deploy/streamlit-community-cloud
-
-## Next development steps
-
-1. Add persistent storage with SQLite.
-2. Add Gemini API integration using Streamlit secrets.
-3. Add document upload and extraction.
-4. Add governance policy retrieval (RAG).
-5. Add evidence-based risk and control assessment.
-6. Generate an assessment report.
-7. Expand reviewer workflow and audit history.
-
-Never put an API key directly in `app.py` or commit it to GitHub.
+## Known limitations
+Session data is temporary. Document processing, policy-grounded RAG, validated
+risk scoring, PDF export, persistent storage, production authentication and
+tamper-resistant audit trails are not included yet.
